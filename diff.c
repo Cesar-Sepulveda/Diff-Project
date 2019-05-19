@@ -18,12 +18,6 @@ void version(void) {
   printf("Written by Cesar Sepulveda\n");
 }
 
-void todo_list(void) {
-  printf("\n\n\nTODO: check line by line in a paragraph, using '|' for differences");
-  printf("\nTODO: this starter code does not yet handle printing all of fin1's paragraphs.");
-  printf("\nTODO: handle the rest of diff's options\n");
-}
-
 void loadfiles(const char* filename1, const char* filename2) {
   memset(buf, 0, sizeof(buf));
   memset(strings1, 0, sizeof(strings1));
@@ -36,8 +30,6 @@ void loadfiles(const char* filename1, const char* filename2) {
   while (!feof(fin2) && fgets(buf, BUFLEN, fin2) != NULL) { strings2[count2++] = strdup(buf); }  fclose(fin2);
 }
 
-void print_option(const char* name, int value) { printf("%17s: %s\n", name, yesorno(value)); }
-
 void diff_output_conflict_error(void) {
   fprintf(stderr, "diff: conflicting output style options\n");
   fprintf(stderr, "diff: Try `diff --help' for more information.)\n");
@@ -49,25 +41,6 @@ void setoption(const char* arg, const char* s, const char* t, int* value) {
     *value = 1;
   }
 }
-
-void showoptions(const char* file1, const char* file2) {
-  printf("diff options...\n");
-  print_option("diffnormal", diffnormal);
-  print_option("show_version", showversion);
-  print_option("show_brief", showbrief);
-  print_option("ignorecase", ignorecase);
-  print_option("report_identical", report_identical);
-  print_option("show_sidebyside", showsidebyside);
-  print_option("show_leftcolumn", showleftcolumn);
-  print_option("suppresscommon", suppresscommon);
-  print_option("showcontext", showcontext);
-  print_option("show_unified", showunified);
-
-  printf("file1: %s,  file2: %s\n\n\n", file1, file2);
-
-  printline();
-}
-
 
 void init_options_files(int argc, const char* argv[], para* p, para* q) {
   int cnt = 0;
